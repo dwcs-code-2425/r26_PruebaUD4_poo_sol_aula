@@ -21,8 +21,8 @@ class OperacionesServiceTest extends TestCase
         $cliente1->addCuentaBancaria($cuentaOrigen);
         $cliente2->addCuentaBancaria($cuentaDestino);
 
-        $cuentasAntesCliente1 = $cliente1->getCuentasBancarias();
-        $cuentasAntesCliente2 = $cliente2->getCuentasBancarias();
+        $cuentasAntesCliente1 = count($cliente1->getCuentasBancarias());
+        $cuentasAntesCliente2 = count($cliente2->getCuentasBancarias());
 
         $cuentaOrigenMovsCount = count($cuentaOrigen->getMovimientos());
         $cuentaDestinoMovsCount = count($cuentaDestino->getMovimientos());
@@ -36,8 +36,8 @@ class OperacionesServiceTest extends TestCase
         $this->assertEqualsWithDelta(800, $cuentaDestino->getSaldo(), 0.001);
 
         //Verificar que las cuentas bancarias de los clientes no han cambiado
-        $this->assertEquals($cuentasAntesCliente1, $cliente1->getCuentasBancarias());
-        $this->assertEquals($cuentasAntesCliente2, $cliente2->getCuentasBancarias());
+        $this->assertEquals($cuentasAntesCliente1, count($cliente1->getCuentasBancarias()));
+        $this->assertEquals($cuentasAntesCliente2, count($cliente2->getCuentasBancarias()));
 
         //Verificar que se han registrado los movimientos correctamente
         $this->assertCount($cuentaOrigenMovsCount + 1, $cuentaOrigen->getMovimientos());
@@ -86,8 +86,8 @@ class OperacionesServiceTest extends TestCase
         $this->assertEqualsWithDelta(500, $cuentaDestino->getSaldo(), 0.001);
 
           //Verificar que las cuentas bancarias de los clientes no han cambiado
-        $this->assertEquals($cuentasAntesCliente1, $cliente1->getCuentasBancarias());
-        $this->assertEquals($cuentasAntesCliente2, $cliente2->getCuentasBancarias());
+        $this->assertEquals($cuentasAntesCliente1, count($cliente1->getCuentasBancarias()));
+        $this->assertEquals($cuentasAntesCliente2, count($cliente2->getCuentasBancarias()));
 
         //Verificar que no se han registrado los movimientos correctamente
         $this->assertCount($cuentaOrigenMovsCount, $cuentaOrigen->getMovimientos());
