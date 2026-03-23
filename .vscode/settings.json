@@ -1,0 +1,7 @@
+{
+    "phpunit.phpunit": "${workspaceRoot}/vendor/bin/phpunit",
+    "phpunit.args": [
+        "-c",
+        "${workspaceRoot}/phpunit.dist.xml"
+    ]
+}
